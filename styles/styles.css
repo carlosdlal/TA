@@ -1,0 +1,115 @@
+body{
+    background-color:#616161;
+}
+.container{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-style: solid;
+    width: 90vw;
+    height: 96vh;
+    background-color:#263238;
+}
+
+.items-title, .items-title h2{
+    text-align: center;
+    font-size: 35px;
+    margin: 5px 0;
+}
+
+.input-containers{
+    text-align: center;
+    height: 35px;
+    margin: 15px 0;
+}
+
+.select-inputs{
+    height: 100%;
+    border-radius: 5px;
+    padding: 5px 15px;
+    width: 325px;
+    text-align-last:center;
+    font-size: 15px;
+    font-weight: 600;
+}
+.measurements{
+    width: 90px;
+    font-size: 10px;
+    padding: 0;
+    margin: 0;
+    position: fixed;
+    height: 35px;
+}
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+}
+.x-inputs{
+    height: 100%;
+    text-align: center;
+    padding: 5px 5px;
+    width: 76px;
+    border-radius: 5px;
+    margin: 0 0 0 5px;
+    font-weight: 600;
+    -webkit-transition: width .5s; 
+    transition: width .5s;
+    transition-timing-function: ease-out;
+}
+
+.input-containers input[type="text"]:focus {
+    background-color: #90A4AE;
+}
+
+
+/*
+input[type="text"]:focus, input[type="number"]:focus{ 
+    width: 200px;
+    height: 100px;
+    border-radius: 10px;
+    padding: 2px;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 25px;
+    position: fixed;
+}
+.input-label input[type="number"]:focus{
+    position: fixed;
+    width: 200px !important;
+    height: 75px ;
+    border-style: none;
+    margin: 0;
+}
+.input-label input[type="number"]:focus ~
+.input-label :focus-within {
+    background-color: transparent;
+}
+
+.input-label{
+    background-color: white;
+    display: inline-block;
+    padding-left: 5px;
+    width: 76px ;
+    border-radius: 5px;
+}
+.input-label #price{
+    border-style: none;
+    margin: 0;
+    width: 65px;
+}
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+.input-label span{
+    pointer-events: none;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+*/
