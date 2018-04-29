@@ -31,37 +31,53 @@
             </div>
             <div class="x-containers">
                 <div id="x1-container" class="xn input-containers">
-                    <input placeholder="Medida" name="x1" id="x1" class="x-inputs" type="text" autocomplete="off"  title="Escribe la medida">
-                    <select name="x1-type" class="select-inputs measurements" id="x1-type">
+                    <input placeholder="Medida" name="x1" id="x1" class="x-inputs" type="number" autocomplete="off"  title="Escribe la medida">
+                    <select tabindex="-1" name="x1-type" class="select-inputs measurements" id="x1-type">
                         <option value="inch">Pulgadas</option>
                         <option value="mts">Metros</option>
                     </select>
                 </div>
                 <div class="final-peso">
-                    <input type="number" id="peso" class="x-inputs" placeholder="Peso" value="0" autocomplete="off" readonly>
+                    <input tabindex="-1" type="number" id="peso" class="x-inputs" placeholder="Peso" value="0" autocomplete="off" readonly>
                     <span>Kgs</span>
                 </div>
                 <div id="x2-container" class="xn input-containers">
-                    <input placeholder="Medida" name="x2" id="x2" class="x-inputs" type="text" autocomplete="off"  title="Escribe la medida">
-                    <select name="x1-type" class="select-inputs measurements" id="x2-type">
+                    <input placeholder="Medida" name="x2" id="x2" class="x-inputs" type="number" autocomplete="off"  title="Escribe la medida">
+                    <select tabindex="-1" name="x1-type" class="select-inputs measurements" id="x2-type">
                         <option value="inch">Pulgadas</option>
                         <option value="mts">Metros</option>
                     </select>
-                </div>   
+                </div>  
+                <div class="final-peso agregado">
+                    <input tabindex="-1" type="number" id="peso-agregado" class="x-inputs" placeholder="Agregar" title="Cantidad de Peso a Agregar" autocomplete="off">
+                    <span>Kgs</span>
+                </div> 
                 <div id="x3-container" class="xn input-containers">
-                    <input placeholder="Medida" name="x3" id="x3" class="x-inputs" type="text" autocomplete="off"  title="Escribe la medida">
-                    <select name="x1-type" class="select-inputs measurements" id="x3-type">
+                    <input placeholder="Medida" name="x3" id="x3" class="x-inputs" type="number" autocomplete="off"  title="Escribe la medida">
+                    <select tabindex="-1" name="x1-type" class="select-inputs measurements" id="x3-type">
                         <option value="inch">Pulgadas</option>
                         <option value="mts">Metros</option>
                     </select>
                 </div>
             </div>
             <div id="price-weight-containers" class="input-containers ">
-                <div class="input-label"><span>$</span><input type="number" id="price" class="x-inputs" placeholder="Costo" autocomplete="off"></div>
+                <div class="input-label"><span>Costo x Kilo&nbsp;</span><span id="money-symbol">$</span><input type="number" id="price" class="x-inputs" placeholder="Costo" autocomplete="off"></div>
+                <input type="number" id="cortes" class="x-inputs"  placeholder="Cortes Totales" step="1" title="Cantidad de Cortes" autocomplete="off"  list="cityname">
+                <datalist id="cityname">
+                    <option value="1">
+                    <option value="2">
+                    <option value="3">
+                    <option value="4">
+                    <option value="5">
+                    <option value="6"> 
+                </datalist>
             </div>
             <div class="input-containers">
-                    <input type="number" id="peso-agregado" class="x-inputs" placeholder="Agregar Peso" title="Cantidad de Peso a Agregar" autocomplete="off">
-                    <input type="number" id="peso" class="x-inputs"  placeholder="Cortes" step="1"  title="Cantidad de Cortes" autocomplete="off" min="0">
+                <div class="final-peso-total">
+                        <span>$&nbsp;</span>
+                    <input title="Costo Por Pieza" tabindex="-1" type="number" id="peso-final" class="x-inputs" placeholder="Peso Final" value="0" autocomplete="off" readonly>
+                    
+                </div>
             </div>
         </div>
     </body>

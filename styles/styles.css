@@ -34,11 +34,19 @@ body{
     font-weight: 600;
 }
 .measurements{
-    width: 90px;
+    width: 60px;
     font-size: 10px;
     padding: 0;
     margin: 0;
     height: 35px;
+    border-style: none;
+    border-color: transparent;
+    background-color: transparent;
+    cursor: pointer;
+    color: white;
+}
+.measurements option{
+    color: black;
 }
 select {
     -webkit-appearance: none;
@@ -59,9 +67,10 @@ select {
     transition-timing-function: ease-out;
 }
 
-.input-containers input[type="text"]:focus {
-    background-color: #90A4AE;
+.input-containers input[type="number"]:focus {
+    background-color: #76FF03;
 }
+
 .input-label span{
     pointer-events: none;
     font-size: 18px;
@@ -73,6 +82,7 @@ select {
     background-color: white;
     margin: 0 auto;
     border-radius: 5px;
+    display: inline-block;
 }
 .x-inputs#price{
     border-style: none;
@@ -96,6 +106,28 @@ input[type="number"]#price:focus {
     font-size: 22px;
     color: white;
 }
+#peso-agregado{
+    height: 35px;
+    width: 64px;
+    float: right;
+    border-style: none;
+    margin: 0;
+    padding: 0;
+}
+.final-peso.agregado{
+    background-color: white;
+    border-radius: 5px;
+    width: 100px;
+}
+.final-peso span{
+    color: white;
+    font-weight: 600;
+    cursor: default;
+}
+.final-peso.agregado span{
+    color: black;
+    margin-left: 1px;
+}
 .x-containers{
     width: 325px;
     margin: 0 auto;
@@ -113,6 +145,48 @@ input[type="number"]#price:focus {
 .xn{
     width: 200px;
 }
+#price{
+    text-align: left;   
+}
+#price-weight-containers .input-label{
+    width: 185px;
+}
+#price-weight-containers span{
+    font-size: 15px;
+}
+#money-symbol{
+    font-size: 20px;
+}
+#label-peso{
+    float: right;
+    vertical-align: bottom;
+    color: white;
+}
+.final-peso-total{
+    background-color: transparent;
+    color: white;
+    font-size: 30px;
+    display: table;
+    margin: 0 auto;
+}
+.final-peso-total input{
+    background-color: transparent;
+    height: 40px;
+    font-size: 30px;
+    color: white;
+    border-style: none;
+    width: 100px;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+}
+.final-peso-total span{
+    display: table-cell;
+    vertical-align: middle;
+    margin: 0;
+    padding: 0;
+}
+
 /*
 input[type="text"]:focus, input[type="number"]:focus{ 
     width: 200px;
