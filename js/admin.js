@@ -2,15 +2,16 @@ $( document ).ready(function() {
     material = $("select[name='material']");
     subtype = $("select[name='subtype']");
     figure = $("select[name='figure']");
-    x1 = $("#x1").val();
+    x1 = $("#x1")
     x1type = $("select[name='x1-type']");
     var x1val;
-    x2 = $("#x2").val();
+    x2 = $("#x2");
     x2type = $("select[name='x2-type']");
     var x2val;
-    x3 = $("#x3").val();
+    x3 = $("#x3");
     x3type = $("select[name='x3-type']");
     var x3val;
+    var pesoTotal=0;
     $("#subtype-container").hide();
     $("#figure-container").hide();
     $(".x-containers").hide();
@@ -87,17 +88,121 @@ $( document ).ready(function() {
                 break;
         }
     });
-    $("#x1", "#x2","#x3",".measurements","#peso-agregado", "#price", "#cortes").change(function(){
+    $("#x1,#x2,#x3,#x1-type,#x2-type,#x3-type,#peso-agregado").change(function(){  
+        var x2Aux=0;
+        var x3Aux=0;
         switch(material.val()){
             case "Acero":
                 if(figure.val()=="round"){
                     if(x2type.val()=="inch"){
-                        x2= inchesToMeters(x2);
+                        x2Aux= inchesToMeters(x2.val());  
                     }
-                    peso= x1*x1*4*x2;
-                    alert(peso);
+                    else{
+                        x2Aux=x2.val();
+                    }
+                    pesoTotal=x1.val()*x1.val()*4*x2Aux;
+                    if($("#peso-agregado").val()!=""){
+                        pesoTotal= pesoTotal+parseFloat($("#peso-agregado").val());
+                    }
+                    $("#peso").val(pesoTotal);
                 }
-            break;
+                if(figure.val()=="square"){
+                    if(x2type.val()=="mts"){
+                        x2Aux= metersToInches(x2.val());  
+                    }
+                    else{
+                        x2Aux=x2.val();
+                    }
+                    pesoTotal=x1.val()*x1.val()*x2Aux*.13;
+                    if($("#peso-agregado").val()!=""){
+                        pesoTotal= pesoTotal+parseFloat($("#peso-agregado").val());
+                    }
+                    $("#peso").val(pesoTotal);
+                    
+                }
+                if(figure.val()=="plate"){
+                    if(x2type.val()=="mts"){
+                        x2Aux= metersToInches(x2.val());  
+                    }
+                    else{
+                        x2Aux=x2.val();
+                    }
+                    if(x3type.val()=="mts"){
+                        x3Aux= metersToInches(x3.val());  
+                    }
+                    else{
+                        x3Aux=x3.val();
+                    }
+                    pesoTotal=x1.val()*x2Aux*x3Aux*.13;
+                    if($("#peso-agregado").val()!=""){
+                        pesoTotal= pesoTotal+parseFloat($("#peso-agregado").val());
+                    }
+                    $("#peso").val(pesoTotal);
+                }
+                break;
+            case "Aluminio":
+                if(figure.val()=="round"){
+                    if(x2type.val()=="mts"){
+                        x2Aux= metersToInches(x2.val());  
+                    }
+                    else{
+                        x2Aux=x2.val();
+                    }
+                    pesoTotal=x1.val()*x1.val()*0.035*x2Aux;
+                    if($("#peso-agregado").val()!=""){
+                        pesoTotal= pesoTotal+parseFloat($("#peso-agregado").val());
+                    }
+                    $("#peso").val(pesoTotal);
+                }
+                if(figure.val()=="square"){
+                    if(x2type.val()=="mts"){
+                        x2Aux= metersToInches(x2.val());  
+                    }
+                    else{
+                        x2Aux=x2.val();
+                    }
+                    pesoTotal=x1.val()*x1.val()*x2Aux*0.048;
+                    if($("#peso-agregado").val()!=""){
+                        pesoTotal= pesoTotal+parseFloat($("#peso-agregado").val());
+                    }
+                    $("#peso").val(pesoTotal);
+                    
+                }
+                if(figure.val()=="plate"){
+                    if(x2type.val()=="mts"){
+                        x2Aux= metersToInches(x2.val());  
+                    }
+                    else{
+                        x2Aux=x2.val();
+                    }
+                    if(x3type.val()=="mts"){
+                        x3Aux= metersToInches(x3.val());  
+                    }
+                    else{
+                        x3Aux=x3.val();
+                    }
+                    pesoTotal=x1.val()*x2Aux*x3Aux*0.048;
+                    if($("#peso-agregado").val()!=""){
+                        pesoTotal= pesoTotal+parseFloat($("#peso-agregado").val());
+                    }
+                    $("#peso").val(pesoTotal);
+                }
+                break; 
+            case "Bronce":
+                if(figure.val()=="round"){
+                    if(x2type.val()=="mts"){
+                        x2Aux= metersToInches(x2.val());  
+                    }
+                    else{
+                        x2Aux=x2.val();
+                    }
+                    pesoTotal=x1.val()*x1.val()*1.7*x2Aux;
+                    if($("#peso-agregado").val()!=""){
+                        pesoTotal= pesoTotal+parseFloat($("#peso-agregado").val());
+                    }
+                    $("#peso").val(pesoTotal);
+                }   
+
         }
     });
 });
