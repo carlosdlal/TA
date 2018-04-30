@@ -18,7 +18,6 @@ $( document ).ready(function() {
     material.change(function(){
         if(material.val()==""){
             $("#subtype-container").hide();
-            
         }
         else{
             $("#subtype-container").show();
@@ -88,7 +87,7 @@ $( document ).ready(function() {
                 break;
         }
     });
-    $("#x1,#x2,#x3,#x1-type,#x2-type,#x3-type,#peso-agregado").change(function(){  
+    $("#x1,#x2,#x3,#x1-type,#x2-type,#x3-type,#peso-agregado,#price").change(function(){  
         var x2Aux=0;
         var x3Aux=0;
         switch(material.val()){
@@ -202,8 +201,15 @@ $( document ).ready(function() {
                     }
                     $("#peso").val(pesoTotal);
                 }   
-
         }
+        if($("#price").val()!=0){
+            $("#peso-final").val(($("#peso").val()*$("#price").val()).toFixed(2));
+        }
+        else{
+            $("#peso-final").val(0);
+        }
+
+        
     });
 });
 function figureSelector(mat){
@@ -238,4 +244,7 @@ function metersToInches(xval){
     var xvalue;
     xvalue=xval/0.0254;
     return xvalue;
+}
+function sumCortes(){
+
 }
