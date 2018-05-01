@@ -12,6 +12,7 @@ $( document ).ready(function() {
     x3type = $("select[name='x3-type']");
     var x3val;
     var pesoTotal=0;
+    var cutPrice=0;
     $("#subtype-container").hide();
     $("#figure-container").hide();
     $(".x-containers").hide();
@@ -26,7 +27,7 @@ $( document ).ready(function() {
             $(".x-containers").hide();
             switch(material.val()){
                 case "Acero":
-                    var steelArray = ["1018", "1045", "4140-T", "4140-R", "D2", "Barra-Hueca","o-1", "12L14","8620","H-13","Inoxidable"];
+                    var steelArray = ["1018", "1045", "4140-T", "4140-R", "D2", "Barra-Hueca","O-1", "12L14","8620","H-13","Inoxidable"];
                     $("select[name='subtype'] option").remove();
                     $("<option disabled selected value>Tipo de Acero</option>").appendTo(subtype);
                     for(i=0;i<steelArray.length;i++){
@@ -87,9 +88,10 @@ $( document ).ready(function() {
                 break;
         }
     });
-    $("#x1,#x2,#x3,#x1-type,#x2-type,#x3-type,#peso-agregado,#price").change(function(){  
+    $("#x1,#x2,#x3,#x1-type,#x2-type,#x3-type,#peso-agregado,#price,#cortes").change(function(){  
         var x2Aux=0;
         var x3Aux=0;
+        cutPrice=0;
         switch(material.val()){
             case "Acero":
                 if(figure.val()=="round"){
@@ -103,7 +105,8 @@ $( document ).ready(function() {
                     if($("#peso-agregado").val()!=""){
                         pesoTotal= pesoTotal+parseFloat($("#peso-agregado").val());
                     }
-                    $("#peso").val(pesoTotal);
+                    $("#peso").val(pesoTotal.toFixed(2));
+                    cutPrice=sumCortes1(subtype.val(),figure.val(),x1.val());
                 }
                 if(figure.val()=="square"){
                     if(x2type.val()=="mts"){
@@ -116,8 +119,8 @@ $( document ).ready(function() {
                     if($("#peso-agregado").val()!=""){
                         pesoTotal= pesoTotal+parseFloat($("#peso-agregado").val());
                     }
-                    $("#peso").val(pesoTotal);
-                    
+                    $("#peso").val(pesoTotal.toFixed(2));
+                    cutPrice=sumCortes1(subtype.val(),figure.val(),x1.val());        
                 }
                 if(figure.val()=="plate"){
                     if(x2type.val()=="mts"){
@@ -136,7 +139,8 @@ $( document ).ready(function() {
                     if($("#peso-agregado").val()!=""){
                         pesoTotal= pesoTotal+parseFloat($("#peso-agregado").val());
                     }
-                    $("#peso").val(pesoTotal);
+                    $("#peso").val(pesoTotal.toFixed(2));
+                    cutPrice=sumCortes1(subtype.val(),figure.val(),x1.val(),x2.val());
                 }
                 break;
             case "Aluminio":
@@ -151,7 +155,8 @@ $( document ).ready(function() {
                     if($("#peso-agregado").val()!=""){
                         pesoTotal= pesoTotal+parseFloat($("#peso-agregado").val());
                     }
-                    $("#peso").val(pesoTotal);
+                    $("#peso").val(pesoTotal.toFixed(2));
+                    cutPrice=sumCortes1(subtype.val(),figure.val(),x1.val());
                 }
                 if(figure.val()=="square"){
                     if(x2type.val()=="mts"){
@@ -164,7 +169,8 @@ $( document ).ready(function() {
                     if($("#peso-agregado").val()!=""){
                         pesoTotal= pesoTotal+parseFloat($("#peso-agregado").val());
                     }
-                    $("#peso").val(pesoTotal);
+                    $("#peso").val(pesoTotal.toFixed(2));
+                    cutPrice=sumCortes1(subtype.val(),figure.val(),x1.val());
                     
                 }
                 if(figure.val()=="plate"){
@@ -184,7 +190,8 @@ $( document ).ready(function() {
                     if($("#peso-agregado").val()!=""){
                         pesoTotal= pesoTotal+parseFloat($("#peso-agregado").val());
                     }
-                    $("#peso").val(pesoTotal);
+                    $("#peso").val(pesoTotal.toFixed(2));
+                    cutPrice=sumCortes1(subtype.val(),figure.val(),x1.val(),x2.val());
                 }
                 break; 
             case "Bronce":
@@ -199,17 +206,17 @@ $( document ).ready(function() {
                     if($("#peso-agregado").val()!=""){
                         pesoTotal= pesoTotal+parseFloat($("#peso-agregado").val());
                     }
-                    $("#peso").val(pesoTotal);
+                    $("#peso").val(pesoTotal.toFixed(2));
+                    cutPrice=sumCortes1(subtype.val(),figure.val(),x1.val());
                 }   
         }
         if($("#price").val()!=0){
-            $("#peso-final").val(($("#peso").val()*$("#price").val()).toFixed(2));
+            $("#peso-final").val(($("#peso").val()*$("#price").val()+cutPrice).toFixed(2));
+
         }
         else{
             $("#peso-final").val(0);
-        }
-
-        
+        }        
     });
 });
 function figureSelector(mat){
@@ -245,6 +252,54 @@ function metersToInches(xval){
     xvalue=xval/0.0254;
     return xvalue;
 }
-function sumCortes(){
-
+function sumCortes1(subt,fig,x1surface){
+    var cortes;
+    if($("#cortes").val()!=0){
+        switch(fig){
+            case "round":
+                if(subt=="1018" || subt=="1045"|| subt=="12L14"|| subt=="8620"|| subt=="6061-T6"|| subt=="1100"){
+                    cortes=(x1surface*x1surface*(3.1416/4))*4;
+                }
+                if(subt=="4140-T" || subt=="4140-R"|| subt=="O-1"){
+                    cortes=(x1surface*x1surface*(3.1416/4))*5;
+                }
+                if(subt=="D2" || subt=="H-13"|| subt=="Inoxidable"|| subt=="Estandard"|| subt=="SAE-62"|| subt=="SAE-64"|| subt=="AMPCO-18"){
+                    cortes=(x1surface*x1surface*(3.1416/4))*6;
+                }
+                break;
+            case "square":
+                if(subt=="1018" || subt=="1045"|| subt=="12L14"|| subt=="8620"|| subt=="6061-T6"|| subt=="1100"){
+                    cortes=x1surface*x1surface*4;
+                }
+                if(subt=="4140-T" || subt=="4140-R"|| subt=="O-1"){
+                    cortes=x1surface*x1surface*5;
+                }
+                if(subt=="D2" || subt=="H-13"|| subt=="Inoxidable"){
+                    cortes=x1surface*x1surface*6;
+                }
+                break;
+        }
+    }
+    else{
+        cortes=0;
+    }
+    
+    return cortes;
+}
+function sumCortes2(subt,fig,x1surface, x2surface){
+    var cortes;
+    switch(fig){
+        case "plate":
+            if(subt=="1018" || subt=="1045"|| subt=="12L14"|| subt=="8620"|| subt=="6061-T6"|| subt=="1100"){
+                cortes=x1surface*x2surface*4;
+            }
+            if(subt=="4140-T" || subt=="4140-R"|| subt=="O-1"){
+                cortes=x1surface*x2surface*5;
+            }
+            if(subt=="D2" || subt=="H-13"|| subt=="Inoxidable"){
+                cortes=x1surface*x2surface*6;
+            }
+                break;
+    }
+    return cortes;
 }
