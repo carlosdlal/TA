@@ -140,7 +140,7 @@ $( document ).ready(function() {
                         pesoTotal= pesoTotal+parseFloat($("#peso-agregado").val());
                     }
                     $("#peso").val(pesoTotal.toFixed(2));
-                    cutPrice=sumCortes1(subtype.val(),figure.val(),x1.val(),x2.val());
+                    cutPrice=sumCortes2(subtype.val(),figure.val(),x1.val(),x2.val());
                 }
                 break;
             case "Aluminio":
@@ -191,7 +191,7 @@ $( document ).ready(function() {
                         pesoTotal= pesoTotal+parseFloat($("#peso-agregado").val());
                     }
                     $("#peso").val(pesoTotal.toFixed(2));
-                    cutPrice=sumCortes1(subtype.val(),figure.val(),x1.val(),x2.val());
+                    cutPrice=sumCortes2(subtype.val(),figure.val(),x1.val(),x2.val());
                 }
                 break; 
             case "Bronce":
@@ -212,7 +212,6 @@ $( document ).ready(function() {
         }
         if($("#price").val()!=0){
             $("#peso-final").val(($("#peso").val()*$("#price").val()+cutPrice).toFixed(2));
-
         }
         else{
             $("#peso-final").val(0);
@@ -288,18 +287,23 @@ function sumCortes1(subt,fig,x1surface){
 }
 function sumCortes2(subt,fig,x1surface, x2surface){
     var cortes;
-    switch(fig){
-        case "plate":
-            if(subt=="1018" || subt=="1045"|| subt=="12L14"|| subt=="8620"|| subt=="6061-T6"|| subt=="1100"){
-                cortes=x1surface*x2surface*4;
-            }
-            if(subt=="4140-T" || subt=="4140-R"|| subt=="O-1"){
-                cortes=x1surface*x2surface*5;
-            }
-            if(subt=="D2" || subt=="H-13"|| subt=="Inoxidable"){
-                cortes=x1surface*x2surface*6;
-            }
-                break;
+    if($("#cortes").val()!=0){
+        switch(fig){
+            case "plate":
+                if(subt=="1018" || subt=="1045"|| subt=="12L14"|| subt=="8620"|| subt=="6061-T6"|| subt=="1100"){
+                    cortes=x1surface*x2surface*4;
+                }
+                if(subt=="4140-T" || subt=="4140-R"|| subt=="O-1"){
+                    cortes=x1surface*x2surface*5;
+                }
+                if(subt=="D2" || subt=="H-13"|| subt=="Inoxidable"){
+                    cortes=x1surface*x2surface*6;
+                }
+                    break;
+        }
+    }
+    else{
+        cortes=0;
     }
     return cortes;
 }
